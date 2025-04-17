@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CrickFever | Live Cricket Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      text-align: center;
+    }
+    header {
+      background: #1f1f1f;
+      padding: 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      color: #00e676;
+    }
+    .countdown {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #fdd835;
+    }
+    .stream-box {
+      margin: 30px auto;
+      width: 90%;
+      max-width: 900px;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 10px;
+    }
+    .match-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .match-info img {
+      width: 60px;
+      height: 60px;
+    }
+    .match-info span {
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .telegram-banner {
+      display: inline-block;
+      margin-top: 40px;
+      background-color: #0088cc;
+      padding: 12px 25px;
+      border-radius: 6px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    .telegram-banner img {
+      vertical-align: middle;
+      width: 24px;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CrickFever Live</h1>
+    <div class="countdown" id="countdown">Next Match Starts In: 00d 00h 00m 00s</div>
+  </header>
+
+  <div class="match-info">
+    <img src="https://upload.wikimedia.org/wikipedia/en/2/25/Mumbai_Indians_Logo.svg" alt="MI Logo">
+    <span>Mumbai Indians vs Sunrisers Hyderabad</span>
+    <img src="https://upload.wikimedia.org/wikipedia/en/8/81/Sunrisers_Hyderabad.png" alt="SRH Logo">
+  </div>
+
+  <div class="stream-box">
+    <!-- Replace with your stream link -->
+    <iframe src="https://example.com/your-live-stream" allowfullscreen></iframe>
+  </div>
+
+  <a href="https://t.me/crickfeverlive" target="_blank" class="telegram-banner">
+    <img src="https://telegram.org/img/t_logo.png" alt="Telegram Logo">
+    Join Our Telegram for Live Updates
+  </a>
+
+  <script>
+    // Countdown to next match (e.g., April 17, 2025 at 7:30 PM IST)
+    const countdownTarget = new Date("April 17, 2025 19:30:00 GMT+5:30").getTime();
+
+    const countdownTimer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownTarget - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = 
+        Next Match Starts In: ${days}d ${hours}h ${minutes}m ${seconds}s;
+
+      if (distance < 0) {
+        clearInterval(countdownTimer);
+        document.getElementById("countdown").innerHTML = "Match is Live Now!";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
